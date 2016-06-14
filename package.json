@@ -13,9 +13,13 @@
     "url": "https://github.com/Jygsaw/ticker-tech/issues"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "tsc",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w"
   },
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "typescript": "^1.8.10"
   }
 }

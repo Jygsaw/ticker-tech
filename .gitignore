@@ -1,3 +1,7 @@
+# Typescript generated files
+web/**/*.js
+web/**/*.js.map
+
 # Logs
 logs
 *.log
