@@ -2,6 +2,9 @@
 web/**/*.js
 web/**/*.js.map
 
+# Typings definition files
+typings
+
 # Logs
 logs
 *.log

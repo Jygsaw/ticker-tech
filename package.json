@@ -14,12 +14,14 @@
   },
   "scripts": {
     "start": "node server.js",
-    "postinstall": "tsc",
+    "postinstall": "typings install && tsc",
     "tsc": "tsc",
-    "tsc:w": "tsc -w"
+    "tsc:w": "tsc -w",
+    "typings": "typings"
   },
   "dependencies": {
     "express": "^4.13.4",
-    "typescript": "^1.8.10"
+    "typescript": "^1.8.10",
+    "typings": "^1.1.0"
   }
 }
