@@ -1,0 +1,17 @@
+{
+  "name": "ticker-tech",
+  "version": "1.0.0",
+  "author": "Justin Cheung",
+  "license": "GPL-3.0",
+  "description": "Angular stock app",
+  "homepage": "https://github.com/Jygsaw/ticker-tech#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jygsaw/ticker-tech.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Jygsaw/ticker-tech/issues"
+  },
+  "scripts": {
+  }
+}
