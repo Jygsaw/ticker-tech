@@ -15,6 +15,7 @@
   "scripts": {
     "start": "node server.js",
     "postinstall": "typings install && tsc",
+    "dev": "concurrently \"npm run tsc:w\" \"npm run nodemon server.js\"",
     "nodemon": "nodemon",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
@@ -31,6 +32,7 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
+    "concurrently": "^2.1.0",
     "nodemon": "^1.9.2"
   }
 }
