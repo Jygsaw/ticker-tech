@@ -15,6 +15,7 @@
   "scripts": {
     "start": "node server.js",
     "postinstall": "typings install && tsc",
+    "nodemon": "nodemon",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings"
@@ -28,5 +29,8 @@
     "typescript": "^1.8.10",
     "typings": "^1.1.0",
     "zone.js": "^0.6.12"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
   }
 }
