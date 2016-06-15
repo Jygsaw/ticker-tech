@@ -20,6 +20,7 @@
     "typings": "typings"
   },
   "dependencies": {
+    "core-js": "^2.4.0",
     "express": "^4.13.4",
     "systemjs": "^0.19.31",
     "typescript": "^1.8.10",
