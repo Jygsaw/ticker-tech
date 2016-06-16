@@ -13,5 +13,8 @@
     "url": "https://github.com/Jygsaw/ticker-tech/issues"
   },
   "scripts": {
+  },
+  "dependencies": {
+    "express": "^4.13.4"
   }
 }
