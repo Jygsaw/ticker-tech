@@ -18,9 +18,12 @@
 
     <!-- Config: begin -->
     <script src="systemjs.config.js"></script>
+    <script>
+      System.import("site").catch(function (err) { console.error(err); });
+    </script>
     <!-- Config: end -->
   </head>
   <body>
-    <h1>TickerTech</h1>
+    <app>Loading ...</app>
   </body>
 </html>

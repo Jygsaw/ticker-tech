@@ -5,7 +5,8 @@
   };
 
   let packages = {
-    "rxjs": { defaultExtension: "js" }
+    "rxjs": { defaultExtension: "js" },
+    "site": { main: "main.js", defaultExtension: "js" }
   };
 
   let ngPackageNames = [
