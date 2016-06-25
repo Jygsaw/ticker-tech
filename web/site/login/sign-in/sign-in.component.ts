@@ -13,6 +13,6 @@ export class SignInComponent {
 
   login() {
     this.authService.login();
-    this.router.navigate(["/home"]);
+    this.router.navigate(["/account"]);
   }
 }
