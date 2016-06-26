@@ -2,6 +2,7 @@ import { provideRouter, RouterConfig } from "@angular/router";
 
 import { AuthService } from "services/auth.service";
 
+import { LoginRoutes } from "./login/login.routes";
 import { PublicRoutes } from "./public/public.routes";
 
 export const routes: RouterConfig = [
@@ -10,6 +11,7 @@ export const routes: RouterConfig = [
     redirectTo: "/home",
     terminal: true,
   },
+  ...LoginRoutes,
   ...PublicRoutes,
 ];
 
