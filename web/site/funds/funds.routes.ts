@@ -4,6 +4,7 @@ import { AuthGuard } from "guards/auth.guard";
 
 import { FundsComponent } from "./funds.component";
 import { FundPositionsComponent } from "./fund-positions/fund-positions.component";
+import { FundResearchComponent } from "./fund-research/fund-research.component";
 import { FundTradesComponent } from "./fund-trades/fund-trades.component";
 
 export const FundsRoutes: RouterConfig = [
@@ -19,6 +20,10 @@ export const FundsRoutes: RouterConfig = [
       {
         path: "fund-positions",
         component: FundPositionsComponent,
+      },
+      {
+        path: "fund-research",
+        component: FundResearchComponent,
       },
       {
         path: "fund-trades",
