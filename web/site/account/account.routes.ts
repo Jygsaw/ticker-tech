@@ -4,6 +4,7 @@ import { AuthGuard } from "guards/auth.guard";
 
 import { AccountComponent } from "./account.component";
 import { BalancesComponent } from "./balances/balances.component";
+import { OrdersComponent } from "./orders/orders.component";
 import { PositionsComponent } from "./positions/positions.component";
 
 export const AccountRoutes: RouterConfig = [
@@ -19,6 +20,10 @@ export const AccountRoutes: RouterConfig = [
       {
         path: "balances",
         component: BalancesComponent,
+      },
+      {
+        path: "orders",
+        component: OrdersComponent,
       },
       {
         path: "positions",
