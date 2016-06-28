@@ -4,6 +4,7 @@ import { AuthGuard } from "guards/auth.guard";
 import { AuthService } from "services/auth.service";
 
 import { AccountRoutes } from "./account/account.routes";
+import { FundsRoutes } from "./funds/funds.routes";
 import { LoginRoutes } from "./login/login.routes";
 import { PublicRoutes } from "./public/public.routes";
 import { SettingsRoutes } from "./settings/settings.routes";
@@ -16,6 +17,7 @@ export const routes: RouterConfig = [
     terminal: true,
   },
   ...AccountRoutes,
+  ...FundsRoutes,
   ...LoginRoutes,
   ...PublicRoutes,
   ...SettingsRoutes,
