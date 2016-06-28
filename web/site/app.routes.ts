@@ -6,6 +6,7 @@ import { AuthService } from "services/auth.service";
 import { AccountRoutes } from "./account/account.routes";
 import { FundsRoutes } from "./funds/funds.routes";
 import { LoginRoutes } from "./login/login.routes";
+import { OptionsRoutes } from "./options/options.routes";
 import { PublicRoutes } from "./public/public.routes";
 import { SettingsRoutes } from "./settings/settings.routes";
 import { StocksRoutes } from "./stocks/stocks.routes";
@@ -19,6 +20,7 @@ export const routes: RouterConfig = [
   ...AccountRoutes,
   ...FundsRoutes,
   ...LoginRoutes,
+  ...OptionsRoutes,
   ...PublicRoutes,
   ...SettingsRoutes,
   ...StocksRoutes,
