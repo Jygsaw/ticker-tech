@@ -1,5 +1,7 @@
 import { provideRouter, RouterConfig } from "@angular/router";
 
+import { AuthService } from "services/auth.service";
+
 import { PublicRoutes } from "./public/public.routes";
 
 export const routes: RouterConfig = [
@@ -12,5 +14,6 @@ export const routes: RouterConfig = [
 ];
 
 export const APP_ROUTER_PROVIDERS = [
+  AuthService,
   provideRouter(routes),
 ];
