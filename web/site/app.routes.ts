@@ -1,5 +1,6 @@
 import { provideRouter, RouterConfig } from "@angular/router";
 
+import { AuthGuard } from "guards/auth.guard";
 import { AuthService } from "services/auth.service";
 
 import { LoginRoutes } from "./login/login.routes";
@@ -16,6 +17,7 @@ export const routes: RouterConfig = [
 ];
 
 export const APP_ROUTER_PROVIDERS = [
+  AuthGuard,
   AuthService,
   provideRouter(routes),
 ];
