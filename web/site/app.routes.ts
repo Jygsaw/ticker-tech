@@ -7,6 +7,7 @@ import { AccountRoutes } from "./account/account.routes";
 import { LoginRoutes } from "./login/login.routes";
 import { PublicRoutes } from "./public/public.routes";
 import { SettingsRoutes } from "./settings/settings.routes";
+import { StocksRoutes } from "./stocks/stocks.routes";
 
 export const routes: RouterConfig = [
   {
@@ -18,6 +19,7 @@ export const routes: RouterConfig = [
   ...LoginRoutes,
   ...PublicRoutes,
   ...SettingsRoutes,
+  ...StocksRoutes,
 ];
 
 export const APP_ROUTER_PROVIDERS = [
