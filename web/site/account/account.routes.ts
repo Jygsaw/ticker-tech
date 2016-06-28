@@ -6,6 +6,7 @@ import { AccountComponent } from "./account.component";
 import { BalancesComponent } from "./balances/balances.component";
 import { OrdersComponent } from "./orders/orders.component";
 import { PositionsComponent } from "./positions/positions.component";
+import { TransfersComponent } from "./transfers/transfers.component";
 
 export const AccountRoutes: RouterConfig = [
   {
@@ -28,6 +29,10 @@ export const AccountRoutes: RouterConfig = [
       {
         path: "positions",
         component: PositionsComponent,
+      },
+      {
+        path: "transfers",
+        component: TransfersComponent,
       },
     ],
   }
