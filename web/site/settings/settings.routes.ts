@@ -4,6 +4,7 @@ import { AuthGuard } from "guards/auth.guard";
 
 import { SettingsComponent } from "./settings.component";
 import { ProfileComponent } from "./profile/profile.component";
+import { SecurityComponent } from "./security/security.component";
 
 export const SettingsRoutes: RouterConfig = [
   {
@@ -19,6 +20,10 @@ export const SettingsRoutes: RouterConfig = [
         path: "profile",
         component: ProfileComponent,
       },
+      {
+        path: "security",
+        component: SecurityComponent,
+      }
     ],
   }
 ];
