@@ -1,12 +1,20 @@
 "use strict";
 
+// TODO: enable https
+
 // initialize variables
+let bodyParser = require("body-parser");
 let express = require("express");
 let path = require("path");
 let app = express();
 
-// specify port
+// config server
 app.set("port", (process.env.PORT || 5000));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// handle api requests
+app.use("/api", require("./api/api").default);
 
 // redirect html requests to index.html
 app.use(function (req, res, next) {
