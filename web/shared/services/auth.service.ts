@@ -5,7 +5,10 @@ export class AuthService {
   isLoggedIn: boolean = false;
 
   login() {
-    this.isLoggedIn = true;
+    return new Promise((resolve, reject) => {
+      this.isLoggedIn = true;
+      resolve();
+    });
   }
 
   logout() {

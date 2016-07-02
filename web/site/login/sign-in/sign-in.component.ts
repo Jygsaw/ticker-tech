@@ -12,7 +12,9 @@ export class SignInComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
-    this.authService.login();
-    this.router.navigate(["/account"]);
+    this.authService
+      .login()
+      .then(() => this.router.navigate(["/account"]))
+      .catch(() => console.error("login failed"));
   }
 }
