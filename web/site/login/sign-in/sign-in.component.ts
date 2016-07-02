@@ -9,12 +9,16 @@ import { AuthService } from "services/auth.service";
   directives: [ ROUTER_DIRECTIVES ],
 })
 export class SignInComponent {
+  private username: string = null;
+  private password: string = null;
+  private loginFailed: boolean = false;
+
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
     this.authService
-      .login()
-      .then(() => this.router.navigate(["/account"]))
-      .catch(() => console.error("login failed"));
+      .login(this.username, this.password)
+      .then((status: string) => this.router.navigate(["/account"]))
+      .catch((err: string) => this.loginFailed = true);
   }
 }

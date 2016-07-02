@@ -1,3 +1,10 @@
 <h2>Sign In</h2>
-<a (click)="login()">Click to sign in.</a>
-<a [routerLink]="['/forgot-password']">Forgot Password?</a>
+<p *ngIf="loginFailed">Sorry, that username and password did not work.  Please try again.</p>
+<form (ngSubmit)="login()">
+  <!-- TODO: refactor with validation -->
+  <!-- TODO: refactor with new forms API -->
+  <input [(ngModel)]="username" placeholder="Username or Email">
+  <input [(ngModel)]="password" placeholder="Password">
+  <button type="submit">Sign In</button>
+</form>
+<a *ngIf="loginFailed" [routerLink]="['/forgot-password']">Forgot Password?</a>
