@@ -1,12 +1,14 @@
 (function () {
   let map = {
     "@angular": "node_modules/@angular",
+    "classes": "shared/classes",
     "guards": "shared/guards",
     "rxjs": "node_modules/rxjs",
     "services": "shared/services"
   };
 
   let packages = {
+    "classes": { defaultExtension: "js" },
     "guards": { defaultExtension: "js" },
     "rxjs": { defaultExtension: "js" },
     "services": { defaultExtension: "js" },
