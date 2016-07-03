@@ -22,7 +22,6 @@
     "platform-browser-dynamic",
     // note: Angular router v3-alpha does not contain UMD bundle
     // "router",
-    "router-deprecated",
     "upgrade"
   ];
 
