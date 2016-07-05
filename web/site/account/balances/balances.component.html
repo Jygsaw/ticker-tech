@@ -1,1 +1,7 @@
 <h2>Account Balances</h2>
+<div *ngIf="balancesFailed">Unable to connect to database.</div>
+<h3>Trading and Cash Balance</h3>
+<dl>
+  <dt>Total Cash Balance</dt>
+  <dd>{{balances["cash"] | currency:"USD":true}}</dd>
+</dl>
