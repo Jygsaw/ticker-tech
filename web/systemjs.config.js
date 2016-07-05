@@ -24,8 +24,7 @@
     "http",
     "platform-browser",
     "platform-browser-dynamic",
-    // note: Angular router v3-alpha does not contain UMD bundle
-    // "router",
+    "router",
     "upgrade"
   ];
 
@@ -41,12 +40,6 @@
 
   // Most environments should use UMD; some (Karma) need the individual index files
   let setPackageConfig = System.packageWithIndex ? packIndex : packUmd;
-
-  // note: Angular router v3-alpha does not contain UMD bundle
-  packages["@angular/router"] = {
-    main: "index.js",
-    defaultExtension: "js",
-  };
 
   // Add Angular package entries
   ngPackageNames.forEach(setPackageConfig);
