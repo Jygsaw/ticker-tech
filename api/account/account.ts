@@ -4,8 +4,7 @@ import * as express from "express";
 
 let router: express.Router = express.Router();
 
-router.use("/account", require("./account/account").default);
-router.use("/auth", require("./auth/auth").default);
+router.use("/balances", require("./balances/balances").default);
 
 router.use((req, res) => res.sendStatus(200));
 
