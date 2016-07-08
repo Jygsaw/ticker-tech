@@ -4,7 +4,8 @@
     "classes": "shared/classes",
     "guards": "shared/guards",
     "rxjs": "node_modules/rxjs",
-    "services": "shared/services"
+    "services": "shared/services",
+    "utils": "shared/utils",
   };
 
   let packages = {
@@ -12,7 +13,8 @@
     "guards": { defaultExtension: "js" },
     "rxjs": { defaultExtension: "js" },
     "services": { defaultExtension: "js" },
-    "site": { main: "main.js", defaultExtension: "js" }
+    "site": { main: "main.js", defaultExtension: "js" },
+    "utils": { defaultExtension: "js" },
   };
 
   let ngPackageNames = [

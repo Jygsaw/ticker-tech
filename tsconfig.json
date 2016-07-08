@@ -12,7 +12,8 @@
     "paths": {
       "classes/*": [ "web/shared/classes/*" ],
       "guards/*": [ "web/shared/guards/*" ],
-      "services/*": [ "web/shared/services/*" ]
+      "services/*": [ "web/shared/services/*" ],
+      "utils/*": [ "web/shared/utils/*" ]
     }
   },
   "exclude": [
