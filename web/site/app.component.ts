@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { ROUTER_DIRECTIVES, Router } from "@angular/router";
 
+import { AccountService } from "services/account.service";
 import { AuthService } from "services/auth.service";
 
 import { MainMenuComponent } from "./main-menu/main-menu.component";
@@ -10,6 +11,7 @@ import { MainMenuComponent } from "./main-menu/main-menu.component";
   selector: "app",
   templateUrl: "app.component.html",
   directives: [ ROUTER_DIRECTIVES, MainMenuComponent ],
+  providers: [ AccountService ],
 })
 export class AppComponent {
   title = "TickerTech";
