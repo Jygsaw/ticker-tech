@@ -1,1 +1,27 @@
 <h2>Stock Positions</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ticker</th>
+      <th>Quantiy</th>
+      <th>Price</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let position of positions.stocks">
+      <td>{{position.name}}</td>
+      <td>{{position.ticker}}</td>
+      <td>{{position.quantity}}</td>
+      <td>{{position.price | currency:USD:true}}</td>
+      <td>{{position.value | currency:USD:true}}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="4">Total</th>
+      <th>{{stocksValue | currency:USD:true}}</th>
+    </tr>
+  </tfoot>
+</table>
