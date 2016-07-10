@@ -9,7 +9,9 @@ import { AuthService } from "services/auth.service";
 
 // TODO: move endpoint to central config file
 // TODO: enable https
-const endpoint = "../../api/account/balances";
+const endpoints = {
+  "balances": "../../api/account/balances",
+};
 
 @Injectable()
 export class AccountService {
@@ -27,7 +29,7 @@ export class AccountService {
 
     // TODO: review promise return implementation
     return this.http
-      .post(endpoint, data, options)
+      .post(endpoints.balances, data, options)
       .toPromise()
       .then(response => {
         let reply = response.json();
