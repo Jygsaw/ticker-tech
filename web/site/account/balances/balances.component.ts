@@ -3,7 +3,6 @@ import { Component, OnInit } from "@angular/core";
 import { Balances } from "classes/balances";
 
 import { AccountService } from "services/account.service";
-import { AuthService } from "services/auth.service";
 
 @Component({
   moduleId: module.id,
@@ -13,7 +12,7 @@ export class BalancesComponent {
   private balances: Balances = {};
   private balancesFailed: boolean = false;
 
-  constructor(private authService: AuthService, private accountService: AccountService) {}
+  constructor(private accountService: AccountService) {}
 
   ngOnInit() {
     this.accountService
