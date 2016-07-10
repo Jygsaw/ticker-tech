@@ -26,3 +26,26 @@ export function dummyCashBalance(userId: number = null) {
     return null;
   }
 }
+
+export function dummyStockPositions(userId: number = null) {
+  if (userId === null) { return null; }
+
+  if (userId === 9999) {
+    return [
+      {
+        id: 1,
+        name: "Exodus Communications",
+        ticker: "EXDS",
+        quantity: 100,
+      },
+      {
+        id: 2,
+        name: "Ruckus Wireless",
+        ticker: "RKUS",
+        quantity: 100,
+      }
+    ];
+  } else {
+    return null;
+  }
+}
