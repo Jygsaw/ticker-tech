@@ -1,3 +1,5 @@
+/// <reference path="./api.d.ts" />
+
 "use strict";
 
 import * as express from "express";
