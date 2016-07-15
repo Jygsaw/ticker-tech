@@ -10,6 +10,8 @@
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
+      "classes-common/*": [ "shared/classes/*" ],
+      "db/*": [ "shared/db/*" ]
     }
   },
   "exclude": [

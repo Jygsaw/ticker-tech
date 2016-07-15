@@ -2,6 +2,8 @@
   let map = {
     "@angular": "node_modules/@angular",
     "classes": "shared/classes",
+    "classes-common": "../shared/classes",
+    "db": "../shared/db",
     "guards": "shared/guards",
     "rxjs": "node_modules/rxjs",
     "services": "shared/services",
@@ -10,6 +12,8 @@
 
   let packages = {
     "classes": { defaultExtension: "js" },
+    "classes-common": { defaultExtension: "js" },
+    "db": { defaultExtension: "js" },
     "guards": { defaultExtension: "js" },
     "rxjs": { defaultExtension: "js" },
     "services": { defaultExtension: "js" },

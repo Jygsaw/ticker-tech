@@ -11,6 +11,8 @@
     "baseUrl": ".",
     "paths": {
       "classes/*": [ "web/shared/classes/*" ],
+      "classes-common/*": [ "shared/classes/*" ],
+      "db/*": [ "shared/db/*" ],
       "guards/*": [ "web/shared/guards/*" ],
       "services/*": [ "web/shared/services/*" ],
       "utils/*": [ "web/shared/utils/*" ]

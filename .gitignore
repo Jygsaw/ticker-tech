@@ -1,6 +1,8 @@
 # Typescript generated files
 api/**/*.js
 api/**/*.js.map
+shared/**/*.js
+shared/**/*.js.map
 web/**/*.js
 web/**/*.js.map
 
