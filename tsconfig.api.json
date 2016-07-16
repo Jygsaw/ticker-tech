@@ -11,7 +11,8 @@
     "baseUrl": ".",
     "paths": {
       "classes-common/*": [ "shared/classes/*" ],
-      "db/*": [ "shared/db/*" ]
+      "db/*": [ "shared/db/*" ],
+      "utils/*": [ "api/shared/utils/*" ]
     }
   },
   "exclude": [
