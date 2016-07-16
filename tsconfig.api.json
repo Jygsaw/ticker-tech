@@ -10,13 +10,10 @@
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
-      "classes/*": [ "web/shared/classes/*" ],
-      "guards/*": [ "web/shared/guards/*" ],
-      "services/*": [ "web/shared/services/*" ],
-      "utils/*": [ "web/shared/utils/*" ]
     }
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "web"
   ]
 }

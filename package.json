@@ -14,11 +14,17 @@
   },
   "scripts": {
     "start": "node server.js",
-    "postinstall": "typings install && tsc",
-    "dev": "concurrently \"npm run tsc:w\" \"npm run nodemon server.js\"",
+    "postinstall": "typings install && npm run tsc-all",
+    "dev": "concurrently \"npm run tsc-api:w\" \"npm run tsc-web:w\" \"npm run nodemon server.js\"",
+    "dev-api": "concurrently \"npm run tsc-api:w\" \"npm run nodemon server.js\"",
+    "dev-web": "concurrently \"npm run tsc-web:w\" \"npm run nodemon server.js\"",
     "nodemon": "nodemon",
     "tsc": "tsc",
-    "tsc:w": "tsc -w",
+    "tsc-all": "npm run tsc-api && npm run tsc-web",
+    "tsc-api": "tsc -p tsconfig.api.json",
+    "tsc-web": "tsc -p tsconfig.web.json",
+    "tsc-api:w": "tsc -w -p tsconfig.api.json",
+    "tsc-web:w": "tsc -w -p tsconfig.web.json",
     "typings": "typings"
   },
   "dependencies": {
