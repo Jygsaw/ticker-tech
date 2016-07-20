@@ -128,6 +128,14 @@ export function getById(table: string, id: number) {
   return dummyDb[table][id] || null;
 }
 
+export function getByUsername(table: string, username: string) {
+  let targetTable = dummyDb[table];
+  return Object.keys(targetTable)
+    .filter((key) => targetTable[key].username === username)
+    .map((key) => targetTable[key])
+    [0];
+}
+
 export function insertRecord(table: string, delta: Listing|Order|Position|User) {
   delta.id = dummyDb[table + "LastId"] += 1;
   return dummyDb[table][delta.id] = delta;
