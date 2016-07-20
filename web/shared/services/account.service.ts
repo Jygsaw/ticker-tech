@@ -3,8 +3,8 @@ import { Headers, Http, RequestOptions } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
 import { Balances } from "classes/balances";
-import { Positions } from "classes/positions";
 import { Order } from "classes-common/order";
+import { Position } from "classes-common/position";
 
 import { AuthService } from "services/auth.service";
 
@@ -14,14 +14,13 @@ import { promiseError } from "utils/utils";
 // TODO: enable https
 const endpoints = {
   "balances": "../../api/account/balances",
-  "positions": "../../api/account/positions",
   order: "../../api/order",
+  position: "../../api/position",
 };
 
 @Injectable()
 export class AccountService {
   private balances: Balances = {};
-  private positions: Positions = {};
 
   constructor(private authService: AuthService, private http: Http) {}
 
@@ -50,24 +49,17 @@ export class AccountService {
       .catch(promiseError);
   }
 
-  getPositions(types: string[]) {
-    let data = JSON.stringify({
-      "userId": this.authService.user.id,
-      "types": types,
-    });
+  getPositions() {
     let headers = new Headers({ "Content-Type": "application/json" });
     let options = new RequestOptions({ "headers": headers });
 
-    // TODO: review promise return implementation
     return this.http
-      .post(endpoints.positions, data, options)
+      .get(endpoints.position, options)
       .toPromise()
       .then(response => {
         let reply = response.json();
-
         if (reply.status === "success") {
-          Object.assign(this.positions, reply.data.positions);
-          return Promise.resolve<Positions>(this.positions);
+          return Promise.resolve<Position[]>(reply.data.result);
         } else {
           return Promise.reject<any>(reply);
         }
