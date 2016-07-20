@@ -4,6 +4,7 @@ import "rxjs/add/operator/toPromise";
 
 import { Balances } from "classes/balances";
 import { Positions } from "classes/positions";
+import { Order } from "classes-common/order";
 
 import { AuthService } from "services/auth.service";
 
@@ -14,6 +15,7 @@ import { promiseError } from "utils/utils";
 const endpoints = {
   "balances": "../../api/account/balances",
   "positions": "../../api/account/positions",
+  order: "../../api/order",
 };
 
 @Injectable()
@@ -66,6 +68,24 @@ export class AccountService {
         if (reply.status === "success") {
           Object.assign(this.positions, reply.data.positions);
           return Promise.resolve<Positions>(this.positions);
+        } else {
+          return Promise.reject<any>(reply);
+        }
+      })
+      .catch(promiseError);
+  }
+
+  getOrders() {
+    let headers = new Headers({ "Content-Type": "application/json"});
+    let options = new RequestOptions({ "headers": headers });
+
+    return this.http
+      .get(endpoints.order, options)
+      .toPromise()
+      .then(response => {
+        let reply = response.json();
+        if (reply.status === "success") {
+          return Promise.resolve<Order[]>(reply.data.result);
         } else {
           return Promise.reject<any>(reply);
         }
