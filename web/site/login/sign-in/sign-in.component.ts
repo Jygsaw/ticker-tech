@@ -3,6 +3,8 @@ import { ROUTER_DIRECTIVES, Router } from "@angular/router";
 
 import { AuthService } from "services/auth.service";
 
+import { promiseError } from "utils/utils";
+
 @Component({
   moduleId: module.id,
   templateUrl: "sign-in.component.html",
@@ -19,9 +21,7 @@ export class SignInComponent {
     this.authService
       .login(this.username, this.password)
       .then(status => this.router.navigate(["/account"]))
-      .catch(err => {
-        console.error(err);
-        this.loginFailed = true;
-      });
+      .catch(promiseError)
+      .catch(() => this.loginFailed = true);
   }
 }
