@@ -4,9 +4,10 @@ import "rxjs/add/operator/toPromise";
 
 import { Balances } from "classes/balances";
 import { Positions } from "classes/positions";
-import { promiseError } from "utils/utils";
 
 import { AuthService } from "services/auth.service";
+
+import { promiseError } from "utils/utils";
 
 // TODO: move endpoint to central config file
 // TODO: enable https
