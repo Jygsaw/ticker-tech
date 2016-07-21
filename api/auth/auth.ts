@@ -2,63 +2,60 @@
 
 import * as express from "express";
 
-import { User } from "../shared/classes/user";
+import { AuthUser } from "classes-common/auth-user";
+import { User } from "classes-common/user";
 
-// TODO remove debugging
-import { dummyGetUser } from "../shared/utils/dummyDb";
+import {
+  getByUsername
+} from "../../shared/db/dummyDb";
+import {
+  dbCallWrapper,
+  setReplyData
+} from "../shared/utils/utils";
 
-interface dbUser extends User {
-  password: string;
-}
-
+// initialize router
 let router: express.Router = express.Router();
 
+// declare routes
 router.route("/")
-  .post((req, res) => {
-    let loginSuccess: boolean = false;
-    let username: string = req.body.username || null;
-    let password: string = req.body.password || null;
-    let user: dbUser = dummyGetUser(username);
-    let result: {
-      status: string;
-      data?: {
-        password?: string;
-        accessToken?: string;
-        user?: User;
-      };
-      message?: string;
-    } = {
-      "status": "fail",
+  .post(handleAuth);
+
+// fallback route
+router.use((req, res, next) => next(new Error("invalid route")));
+
+// route handlers
+function handleAuth(req, res, next) {
+  let username: string = req.body.username || null;
+  let password: string = req.body.password || null;
+  let user: User = dbCallWrapper(req, () => getByUsername("users", username));
+  let loginSuccess: boolean = false;
+
+  // verify user found
+  if (user) {
+    // verify password
+    if (password === user.password) {
+      loginSuccess = true;
+    }
+  }
+
+  // prep result
+  if (loginSuccess) {
+    let authUser: AuthUser = {
+      id: user.id,
+      username: user.username,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      email: user.email,
     };
+    setReplyData(req, "accessToken", "allyourbasearebelongtous");
+    setReplyData(req, "authUser", authUser);
+  } else if (req.reply.status !== "error") {
+    req.reply.status = "fail";
+    req.reply.message = "invalid credentials";
+  }
 
-    // verify user
-    if (user) {
-      // verify password
-      if (password === user.password) {
-        loginSuccess = true;
-      }
-    }
-
-    // prep result
-    if (loginSuccess) {
-      delete user.password;
-      result.status = "success";
-      result.data = {
-        "accessToken": "allyourbasearebelongtous",
-        "user": user,
-      };
-    } else {
-      result.status = "fail";
-      result.data = {
-        "password": "invalid credentials",
-      };
-    }
-
-    // send response
-    res.setHeader("Content-Type", "application/json");
-    res.send(JSON.stringify(result));
-  });
-
-router.use((req, res) => res.sendStatus(200));
+  // send response
+  res.json(req.reply);
+}
 
 export default router;
