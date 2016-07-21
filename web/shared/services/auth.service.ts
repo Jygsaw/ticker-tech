@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { Headers, Http, RequestOptions } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
-import { User } from "classes/user";
+import { AuthUser } from "classes-common/auth-user";
+
 import { promiseError } from "utils/utils";
 
 // TODO: move endpoint to central config file
@@ -13,7 +14,7 @@ const endpoint = "../../api/auth";
 export class AuthService {
   isLoggedIn: boolean = false;
   accessToken: string = null;
-  user: User = null;
+  user: AuthUser = null;
 
   constructor(private http: Http) {}
 
@@ -35,7 +36,7 @@ export class AuthService {
         if (reply.status === "success") {
           this.isLoggedIn = true;
           this.accessToken = reply.data.accessToken;
-          this.user = reply.data.user;
+          this.user = reply.data.authUser;
           return Promise.resolve<string>(reply.status);
         } else {
           return Promise.reject<any>(reply);
