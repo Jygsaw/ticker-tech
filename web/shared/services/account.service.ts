@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Headers, Http, RequestOptions } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
-import { Balances } from "classes/balances";
+import { Balance } from "classes-common/balance";
 import { Order } from "classes-common/order";
 import { Position } from "classes-common/position";
 
@@ -13,35 +13,26 @@ import { promiseError } from "utils/utils";
 // TODO: move endpoint to central config file
 // TODO: enable https
 const endpoints = {
-  "balances": "../../api/account/balances",
+  balance: "../../api/balance",
   order: "../../api/order",
   position: "../../api/position",
 };
 
 @Injectable()
 export class AccountService {
-  private balances: Balances = {};
-
   constructor(private authService: AuthService, private http: Http) {}
 
-  getBalances(types: string[]) {
-    let data = JSON.stringify({
-      "userId": this.authService.user.id,
-      "types": types,
-    });
+  getBalances() {
     let headers = new Headers({ "Content-Type": "application/json" });
     let options = new RequestOptions({ "headers": headers });
 
-    // TODO: review promise return implementation
     return this.http
-      .post(endpoints.balances, data, options)
+      .get(endpoints.balance, options)
       .toPromise()
       .then(response => {
         let reply = response.json();
-
         if (reply.status === "success") {
-          Object.assign(this.balances, reply.data.balances);
-          return Promise.resolve<Balances>(this.balances);
+          return Promise.resolve<Balance[]>(reply.data.result);
         } else {
           return Promise.reject<any>(reply);
         }
