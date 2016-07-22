@@ -52,6 +52,7 @@ router.use((req, res, next) => {
 // delegate routes
 router.use("/account", require("./account/account").default);
 router.use("/auth", require("./auth/auth").default);
+router.use("/balance", require("./balance/balance").default);
 router.use("/listing", require("./listing/listing").default);
 router.use("/order", require("./order/order").default);
 router.use("/position", require("./position/position").default);
