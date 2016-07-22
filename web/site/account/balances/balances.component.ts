@@ -1,28 +1,30 @@
 import { Component, OnInit } from "@angular/core";
 
-import { Balances } from "classes/balances";
+import { Balance } from "classes-common/balance";
 
 import { AccountService } from "services/account.service";
+
+import { promiseError } from "utils/utils";
 
 @Component({
   moduleId: module.id,
   templateUrl: "balances.component.html",
 })
 export class BalancesComponent {
-  private balances: Balances = {};
-  private balancesFailed: boolean = false;
+  private totals: {
+    cash: number,
+  } = {
+    cash: 0,
+  };
+  private fetchFailed: boolean = false;
 
   constructor(private accountService: AccountService) {}
 
   ngOnInit() {
     this.accountService
-      .getBalances([ "cash" ])
-      .then((data) => {
-        Object.assign(this.balances, data);
-      })
-      .catch((err: any) => {
-        console.error(err);
-        this.balancesFailed = true;
-      });
+      .getBalances()
+      .then(data => data.forEach((elem) => this.totals[elem.type] += elem.value))
+      .catch(promiseError)
+      .catch(() => this.fetchFailed = true);
   }
 };
