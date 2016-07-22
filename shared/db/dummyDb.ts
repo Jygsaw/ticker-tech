@@ -1,11 +1,14 @@
 "use strict";
 
+import { Balance } from "classes-common/balance";
 import { Listing } from "classes-common/listing";
 import { Order } from "classes-common/order";
 import { Position } from "classes-common/position";
 import { User } from "classes-common/user";
 
 let dummyDb: {
+  balancesLastId: number,
+  balances: { [key: number]: Balance };
   listingsLastId: number,
   listings: { [key: number]: Listing };
   ordersLastId: number,
@@ -15,6 +18,8 @@ let dummyDb: {
   usersLastId: number,
   users: { [key: number]: User };
 } = {
+  balancesLastId: null,
+  balances: {},
   listingsLastId: null,
   listings: {},
   ordersLastId: null,
@@ -23,6 +28,22 @@ let dummyDb: {
   positions: {},
   usersLastId: null,
   users: {}
+};
+
+dummyDb.balancesLastId = 2;
+dummyDb.balances = {
+  1: {
+    id: 1,
+    user_id: 1,
+    value: 100000,
+    type: "cash",
+  },
+  2: {
+    id: 2,
+    user_id: 2,
+    value: 50000,
+    type: "cash",
+  },
 };
 
 dummyDb.listingsLastId = 2;
