@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ROUTER_DIRECTIVES, Router } from "@angular/router";
 
 import { AuthService } from "services/auth.service";
@@ -16,6 +16,13 @@ export class SignInComponent {
   private loginFailed: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
+    // redirect if logged in
+    if (this.authService.isLoggedIn) {
+      this.router.navigate(["/account"]);
+    }
+  }
 
   login() {
     this.authService

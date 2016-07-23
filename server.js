@@ -6,12 +6,20 @@
 let bodyParser = require("body-parser");
 let express = require("express");
 let path = require("path");
+let session = require("express-session");
 let app = express();
 
 // config server
 app.set("port", (process.env.PORT || 5000));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+  secret: "allyourbasearebelongtous",
+  resave: false,
+  saveUninitialized: false,
+  // TODO implement https and secure sessions
+  cookie: { secure: false },
+}));
 
 // handle api requests
 app.use("/api", require("./api/api").default);

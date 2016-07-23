@@ -35,6 +35,9 @@ function handleAuth(req, res, next) {
     // verify password
     if (password === user.password) {
       loginSuccess = true;
+
+      // init session vars
+      req.session.userId = user.id;
     }
   }
 
@@ -47,7 +50,6 @@ function handleAuth(req, res, next) {
       lastName: user.last_name,
       email: user.email,
     };
-    setReplyData(req, "accessToken", "allyourbasearebelongtous");
     setReplyData(req, "authUser", authUser);
   } else if (req.reply.status !== "error") {
     req.reply.status = "fail";

@@ -4,7 +4,7 @@ import "rxjs/add/operator/toPromise";
 
 import { AuthUser } from "classes-common/auth-user";
 
-import { promiseError } from "utils/utils";
+import { promiseError, setCookie, deleteCookie } from "utils/utils";
 
 // TODO: move endpoint to central config file
 // TODO: enable https
@@ -13,7 +13,6 @@ const endpoint = "../../api/auth";
 @Injectable()
 export class AuthService {
   isLoggedIn: boolean = false;
-  accessToken: string = null;
   user: AuthUser = null;
 
   constructor(private http: Http) {}
@@ -35,8 +34,8 @@ export class AuthService {
 
         if (reply.status === "success") {
           this.isLoggedIn = true;
-          this.accessToken = reply.data.accessToken;
           this.user = reply.data.authUser;
+          setCookie("user", JSON.stringify(this.user));
           return Promise.resolve<string>(reply.status);
         } else {
           return Promise.reject<any>(reply);
@@ -47,5 +46,7 @@ export class AuthService {
 
   logout() {
     this.isLoggedIn = false;
+    this.user = null;
+    deleteCookie("user");
   }
 };
