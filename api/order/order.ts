@@ -52,8 +52,8 @@ function handleCreate(req, res, next) {
   let fields = {
     id: null,
     user_id: +req.user.id,
-    quantity: 100,
     listing_id: 1,
+    quantity: 100,
     action: "buy",
     conditions: [ "market" ],
     status: "created",
@@ -98,8 +98,8 @@ function handleUpdate(req, res, next) {
   let fields = {
     id: id,
     user_id: +req.user.id,
-    quantity: 100,
     listing_id: 1,
+    quantity: 100,
     action: "buy",
     conditions: [ "market" ],
     status: "created",

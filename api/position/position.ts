@@ -52,8 +52,8 @@ function handleCreate(req, res, next) {
   let fields = {
     id: null,
     user_id: +req.user.id,
-    quantity: 300,
     listing_id: 1,
+    quantity: 300,
   };
 
   // TODO remove debugging
@@ -94,8 +94,8 @@ function handleUpdate(req, res, next) {
   let fields = {
     id: id,
     user_id: +req.user.id,
-    quantity: 300,
     listing_id: 1,
+    quantity: 300,
   };
 
   // TODO remove debugging

@@ -46,9 +46,9 @@ function handleAuth(req, res, next) {
     let authUser: AuthUser = {
       id: user.id,
       username: user.username,
-      firstName: user.first_name,
-      lastName: user.last_name,
       email: user.email,
+      first_name: user.first_name,
+      last_name: user.last_name,
     };
     setReplyData(req, "authUser", authUser);
   } else if (req.reply.status !== "error") {
