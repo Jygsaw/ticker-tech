@@ -75,4 +75,22 @@ export class AccountService {
       })
       .catch(promiseError);
   }
+
+  createOrder(order: Order) {
+    let headers = new Headers({ "Content-Type": "application/json" });
+    let options = new RequestOptions({ "headers": headers });
+
+    return this.http
+      .put(endpoints.order, order, options)
+      .toPromise()
+      .then(response => {
+        let reply = response.json();
+        if (reply.status === "success") {
+          return Promise.resolve<Order[]>(reply.data.result);
+        } else {
+          return Promise.reject<any>(reply);
+        }
+      })
+      .catch(promiseError);
+  }
 };
