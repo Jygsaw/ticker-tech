@@ -3,10 +3,9 @@ import { RouterConfig } from "@angular/router";
 import { AuthGuard } from "guards/auth.guard";
 
 import { AccountComponent } from "./account.component";
-import { BalancesComponent } from "./balances/balances.component";
 import { BeneficiariesComponent } from "./beneficiaries/beneficiaries.component";
-import { OrdersComponent } from "./orders/orders.component";
-import { PositionsComponent } from "./positions/positions.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { SecurityComponent } from "./security/security.component";
 import { TransfersComponent } from "./transfers/transfers.component";
 
 export const AccountRoutes: RouterConfig = [
@@ -17,23 +16,19 @@ export const AccountRoutes: RouterConfig = [
     children: [
       {
         path: "",
-        component: BalancesComponent,
-      },
-      {
-        path: "balances",
-        component: BalancesComponent,
+        component: ProfileComponent,
       },
       {
         path: "beneficiaries",
         component: BeneficiariesComponent,
       },
       {
-        path: "orders",
-        component: OrdersComponent,
+        path: "profile",
+        component: ProfileComponent,
       },
       {
-        path: "positions",
-        component: PositionsComponent,
+        path: "security",
+        component: SecurityComponent,
       },
       {
         path: "transfers",

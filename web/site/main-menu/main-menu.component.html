@@ -12,46 +12,20 @@
     <li>
       <a [routerLink]="['/account']">Account</a>
       <ul>
-        <li><a [routerLink]="['/account/balances']">Balances</a></li>
-        <li><a [routerLink]="['/account/positions']">Positions</a></li>
-        <li><a [routerLink]="['/account/orders']">Orders</a></li>
+        <li><a [routerLink]="['/account/profile']">Profile</a></li>
+        <li><a [routerLink]="['/account/security']">Security</a></li>
         <li><a [routerLink]="['/account/transfers']">Transfers</a></li>
         <li><a [routerLink]="['/account/beneficiaries']">Beneficiaries</a></li>
       </ul>
     </li>
     <li>
-      <a [routerLink]="['/stocks']">Stocks</a>
-      <ul>
-        <li><a [routerLink]="['/stocks/stock-positions']">Positions</a></li>
-        <li><a [routerLink]="['/stocks/stock-trades']">Trades</a></li>
-        <li><a [routerLink]="['/stocks/stock-research']">Research</a></li>
-        <li><a [routerLink]="['/stocks/stock-pulse']">Pulse</a></li>
-      </ul>
+      <a [routerLink]="['/balances']">Balances</a>
     </li>
     <li>
-      <a [routerLink]="['/funds']">Funds</a>
-      <ul>
-        <li><a [routerLink]="['/funds/fund-positions']">Positions</a></li>
-        <li><a [routerLink]="['/funds/fund-trades']">Trades</a></li>
-        <li><a [routerLink]="['/funds/fund-research']">Research</a></li>
-        <li><a [routerLink]="['/funds/fund-pulse']">Pulse</a></li>
-      </ul>
+      <a [routerLink]="['/positions']">Positions</a>
     </li>
     <li>
-      <a [routerLink]="['/options']">Options</a>
-      <ul>
-        <li><a [routerLink]="['/options/option-positions']">Positions</a></li>
-        <li><a [routerLink]="['/options/option-trades']">Trades</a></li>
-        <li><a [routerLink]="['/options/option-research']">Research</a></li>
-        <li><a [routerLink]="['/options/option-pulse']">Pulse</a></li>
-      </ul>
-    </li>
-    <li>
-      <a [routerLink]="['/settings']">Settings</a>
-      <ul>
-        <li><a [routerLink]="['/settings/profile']">Profile</a></li>
-        <li><a [routerLink]="['/settings/security']">Security</a></li>
-      </ul>
+      <a [routerLink]="['/orders']">Orders</a>
     </li>
   </ul>
 </nav>

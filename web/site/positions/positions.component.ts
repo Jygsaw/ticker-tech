@@ -13,9 +13,9 @@ interface DisplayPosition extends Position {
 
 @Component({
   moduleId: module.id,
-  templateUrl: "stock-positions.component.html",
+  templateUrl: "positions.component.html",
 })
-export class StockPositionsComponent {
+export class PositionsComponent {
   private positions: DisplayPosition[] = [];
   private totalValue: number = null;
   private fetchFailed: boolean = false;

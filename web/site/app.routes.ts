@@ -4,12 +4,12 @@ import { AuthGuard } from "guards/auth.guard";
 import { AuthService } from "services/auth.service";
 
 import { AccountRoutes } from "./account/account.routes";
-import { FundsRoutes } from "./funds/funds.routes";
 import { LoginRoutes } from "./login/login.routes";
-import { OptionsRoutes } from "./options/options.routes";
 import { PublicRoutes } from "./public/public.routes";
-import { SettingsRoutes } from "./settings/settings.routes";
-import { StocksRoutes } from "./stocks/stocks.routes";
+
+import { BalancesComponent } from "./balances/balances.component";
+import { OrdersComponent } from "./orders/orders.component";
+import { PositionsComponent } from "./positions/positions.component";
 
 export const routes: RouterConfig = [
   {
@@ -18,12 +18,23 @@ export const routes: RouterConfig = [
     terminal: true,
   },
   ...AccountRoutes,
-  ...FundsRoutes,
   ...LoginRoutes,
-  ...OptionsRoutes,
   ...PublicRoutes,
-  ...SettingsRoutes,
-  ...StocksRoutes,
+  {
+    path: "balances",
+    component: BalancesComponent,
+    canActivate: [ AuthGuard ],
+  },
+  {
+    path: "orders",
+    component: OrdersComponent,
+    canActivate: [ AuthGuard ],
+  },
+  {
+    path: "positions",
+    component: PositionsComponent,
+    canActivate: [ AuthGuard ],
+  },
 ];
 
 export const APP_ROUTER_PROVIDERS = [
