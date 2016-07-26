@@ -1,0 +1,11 @@
+<h2>New Order</h2>
+<form #f="ngForm" (ngSubmit)="submit()">
+  <!-- TODO: refactor with validation -->
+  <!-- TODO: refactor with new forms API -->
+  <input [(ngModel)]="order.listing_id" name="listing_id" type="text" placeholder="Listing ID">
+  <input [(ngModel)]="order.quantity" name="quantity" type="text" placeholder="Quantity">
+  <input [(ngModel)]="order.action" name="action" type="text" placeholder="Action">
+  <input [(ngModel)]="order.type" name="type" type="text" placeholder="Type">
+  <input [(ngModel)]="order.price" name="price" type="text" placeholder="Price">
+  <button type="submit">Submit Order</button>
+</form>

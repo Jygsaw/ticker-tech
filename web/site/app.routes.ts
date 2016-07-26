@@ -10,6 +10,7 @@ import { PublicRoutes } from "./public/public.routes";
 import { BalancesComponent } from "./balances/balances.component";
 import { OrdersComponent } from "./orders/orders.component";
 import { PositionsComponent } from "./positions/positions.component";
+import { TradeComponent } from "./trade/trade.component";
 
 export const routes: RouterConfig = [
   {
@@ -33,6 +34,11 @@ export const routes: RouterConfig = [
   {
     path: "positions",
     component: PositionsComponent,
+    canActivate: [ AuthGuard ],
+  },
+  {
+    path: "trade",
+    component: TradeComponent,
     canActivate: [ AuthGuard ],
   },
 ];
