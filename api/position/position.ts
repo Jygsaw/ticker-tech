@@ -35,11 +35,11 @@ router.use((req, res, next) => next(new Error("invalid route")));
 
 // route handlers
 function handleReadAll(req, res, next) {
-  // fetch all records of user
+  // read incoming values
   let userId: number = +req.user.id;
-  let result = dbCallWrapper(req, () => getAllByUserId("positions", userId));
 
-  // prep reply
+  // fetch all records of user
+  let result = dbCallWrapper(req, () => getAllByUserId("positions", userId));
   setReplyData(req, "result", result);
 
   // send reply
@@ -47,8 +47,7 @@ function handleReadAll(req, res, next) {
 }
 
 function handleCreate(req, res, next) {
-  // validate incoming values
-  let validated: boolean = false;
+  // read incoming values
   let fields = {
     id: null,
     user_id: +req.user.id,
@@ -56,40 +55,38 @@ function handleCreate(req, res, next) {
     quantity: 300,
   };
 
-  // TODO remove debugging
-  validated = true;
+  // validate data
+  let validated: boolean = true;
 
   // create new record
-  let result = validated ? dbCallWrapper(req, () => insertRecord("orders", fields)) : null;
-
-  // prep reply
-  setReplyData(req, "result", result);
+  if (validated) {
+    let result = validated ? dbCallWrapper(req, () => insertRecord("orders", fields)) : null;
+    setReplyData(req, "result", result);
+  }
 
   // send reply
   res.json(req.reply);
 }
 
 function handleRead(req, res, next) {
-  // validate incoming values
-  let validated: boolean = false;
+  // read incoming values
   let id: number = +req.params.id;
 
-  // TODO remove debugging
-  validated = true;
+  // validate data
+  let validated: boolean = true;
 
   // fetch specified record
-  let result = validated ? dbCallWrapper(req, () => getById("positions", id)) : null;
-
-  // prep reply
-  setReplyData(req, "result", result);
+  if (validated) {
+    let result = validated ? dbCallWrapper(req, () => getById("positions", id)) : null;
+    setReplyData(req, "result", result);
+  }
 
   // send reply
   res.json(req.reply);
 }
 
 function handleUpdate(req, res, next) {
-  // validate incoming values
-  let validated: boolean = false;
+  // read incoming values
   let id: number = +req.params.id;
   let fields = {
     id: id,
@@ -98,32 +95,31 @@ function handleUpdate(req, res, next) {
     quantity: 300,
   };
 
-  // TODO remove debugging
-  validated = true;
+  // validate data
+  let validated: boolean = true;
 
   // update specified record
-  let result = validated ? dbCallWrapper(req, () => updateById("positions", id, fields)) : null;
-
-  // prep reply
-  setReplyData(req, "result", result);
+  if (validated) {
+    let result = validated ? dbCallWrapper(req, () => updateById("positions", id, fields)) : null;
+    setReplyData(req, "result", result);
+  }
 
   // send reply
   res.json(req.reply);
 }
 
 function handleDelete(req, res, next) {
-  // validate incoming values
-  let validated: boolean = false;
+  // read incoming values
   let id: number = +req.params.id;
 
-  // TODO remove debugging
-  validated = true;
+  // validate data
+  let validated: boolean = true;
 
   // delete specified record
-  let result = validated ? dbCallWrapper(req, () => deleteById("positions", id)) : null;
-
-  // prep reply
-  setReplyData(req, "result", result);
+  if (validated) {
+    let result = validated ? dbCallWrapper(req, () => deleteById("positions", id)) : null;
+    setReplyData(req, "result", result);
+  }
 
   // send reply
   res.json(req.reply);

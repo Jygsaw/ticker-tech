@@ -25,19 +25,26 @@ router.use((req, res, next) => next(new Error("invalid route")));
 
 // route handlers
 function handleAuth(req, res, next) {
+  // read incoming values
   let username: string = req.body.username || null;
   let password: string = req.body.password || null;
   let user: User = dbCallWrapper(req, () => getByUsername("users", username));
   let loginSuccess: boolean = false;
 
-  // verify user found
-  if (user) {
-    // verify password
-    if (password === user.password) {
-      loginSuccess = true;
+  // validate data
+  let validated: boolean = true;
 
-      // init session vars
-      req.session.userId = user.id;
+  // authenticate credentials
+  if (validated) {
+    // verify user found
+    if (user) {
+      // verify password
+      if (password === user.password) {
+        loginSuccess = true;
+
+        // init session vars
+        req.session.userId = user.id;
+      }
     }
   }
 

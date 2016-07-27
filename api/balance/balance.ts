@@ -24,11 +24,11 @@ router.use((req, res, next) => next(new Error("invalid route")));
 
 // route handlers
 function handleReadAll(req, res, next) {
-  // fetch all records of user
+  // read incoming values
   let userId: number = +req.user.id;
-  let result = dbCallWrapper(req, () => getAllByUserId("balances", userId));
 
-  // prep reply
+  // fetch all records of user
+  let result = dbCallWrapper(req, () => getAllByUserId("balances", userId));
   setReplyData(req, "result", result);
 
   // send reply
