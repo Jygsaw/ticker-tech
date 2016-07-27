@@ -72,7 +72,8 @@ dummyDb.orders = {
     quantity: 100,
     listing_id: 1,
     action: "buy",
-    conditions: [ "market" ],
+    type: "market",
+    price: null,
     status: "executed",
   },
   2: {
@@ -81,7 +82,8 @@ dummyDb.orders = {
     quantity: 200,
     listing_id: 2,
     action: "buy",
-    conditions: [ "market" ],
+    type: "market",
+    price: null,
     status: "executed",
   },
 };

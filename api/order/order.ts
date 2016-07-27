@@ -55,7 +55,8 @@ function handleCreate(req, res, next) {
     listing_id: req.body.listing_id || null,
     quantity: req.body.quantity || null,
     action: req.body.action || null,
-    conditions: req.body.conditions || null,
+    type: req.body.type || null,
+    price: req.body.price || null,
     status: "created",
   };
 
@@ -113,7 +114,8 @@ function handleUpdate(req, res, next) {
     listing_id: 1,
     quantity: 100,
     action: "buy",
-    conditions: [ "market" ],
+    type: "market",
+    price: null,
     status: "created",
   };
 

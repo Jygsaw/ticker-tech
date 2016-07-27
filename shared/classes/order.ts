@@ -6,6 +6,7 @@ export class Order {
   quantity: number;
 
   action: string;
-  conditions: string[];
+  type: string;
+  price: number;
   status: string;
 }
