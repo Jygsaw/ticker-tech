@@ -16,6 +16,7 @@ const endpoints = {
   balance: "../../api/balance",
   order: "../../api/order",
   position: "../../api/position",
+  user: "../../api/user",
 };
 const headers = new Headers({ "Content-Type": "application/json" });
 const options = new RequestOptions({ "headers": headers });
@@ -23,6 +24,14 @@ const options = new RequestOptions({ "headers": headers });
 @Injectable()
 export class AccountService {
   constructor(private authService: AuthService, private http: Http) {}
+
+  getUser() {
+    return this.http
+      .get(endpoints.user, options)
+      .toPromise()
+      .then(processResponse)
+      .catch(promiseError);
+  }
 
   getBalances() {
     return this.http
@@ -51,6 +60,14 @@ export class AccountService {
   createOrder(order: Order) {
     return this.http
       .put(endpoints.order, order, options)
+      .toPromise()
+      .then(processResponse)
+      .catch(promiseError);
+  }
+
+  updateUser(data) {
+    return this.http
+      .post(endpoints.user, data, options)
       .toPromise()
       .then(processResponse)
       .catch(promiseError);
