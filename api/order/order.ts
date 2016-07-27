@@ -3,6 +3,7 @@
 import * as express from "express";
 
 import { Order } from "classes-common/order";
+import { ValidationError } from "classes-common/validation-error";
 
 import {
   deleteById,
@@ -47,26 +48,39 @@ function handleReadAll(req, res, next) {
 }
 
 function handleCreate(req, res, next) {
-  // validate incoming values
-  let validated: boolean = false;
+  // read incoming values
   let fields = {
     id: null,
     user_id: +req.user.id,
-    listing_id: 1,
-    quantity: 100,
-    action: "buy",
-    conditions: [ "market" ],
+    listing_id: req.body.listing_id || null,
+    quantity: req.body.quantity || null,
+    action: req.body.action || null,
+    conditions: req.body.conditions || null,
     status: "created",
   };
 
-  // TODO remove debugging
-  validated = true;
+  // validate data
+  let validated: boolean = true;
+  let errors: ValidationError = {};
+  Object.keys(fields).forEach(key => {
+    // TODO refactor into something more readable
+    if (((key !== "id" && key !== "price")
+         || (key === "price" && fields["type"] === "limit"))
+        && fields[key] === null) {
+      errors[key] = "invalid value";
+      validated = false;
+    }
+  });
+  if (!validated) {
+    req.reply.status = "fail";
+    req.reply.errors = errors;
+  }
 
   // create new record
-  let result = validated ? dbCallWrapper(req, () => insertRecord("orders", fields)) : null;
-
-  // prep reply
-  setReplyData(req, "result", result);
+  if (validated) {
+    let result = dbCallWrapper(req, () => insertRecord("orders", fields));
+    setReplyData(req, "result", result);
+  }
 
   // send reply
   res.json(req.reply);
