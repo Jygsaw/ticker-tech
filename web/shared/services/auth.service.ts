@@ -9,6 +9,8 @@ import { promiseError, setCookie, deleteCookie } from "utils/utils";
 // TODO: move endpoint to central config file
 // TODO: enable https
 const endpoint = "../../api/auth";
+const headers = new Headers({ "Content-Type": "application/json" });
+const options = new RequestOptions({ "headers": headers });
 
 @Injectable()
 export class AuthService {
@@ -22,8 +24,6 @@ export class AuthService {
       "username": username,
       "password": password,
     });
-    let headers = new Headers({ "Content-Type": "application/json" });
-    let options = new RequestOptions({ "headers": headers });
 
     // TODO: review promise return implementation
     return this.http

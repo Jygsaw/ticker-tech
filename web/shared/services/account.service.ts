@@ -17,15 +17,14 @@ const endpoints = {
   order: "../../api/order",
   position: "../../api/position",
 };
+const headers = new Headers({ "Content-Type": "application/json" });
+const options = new RequestOptions({ "headers": headers });
 
 @Injectable()
 export class AccountService {
   constructor(private authService: AuthService, private http: Http) {}
 
   getBalances() {
-    let headers = new Headers({ "Content-Type": "application/json" });
-    let options = new RequestOptions({ "headers": headers });
-
     return this.http
       .get(endpoints.balance, options)
       .toPromise()
@@ -41,9 +40,6 @@ export class AccountService {
   }
 
   getPositions() {
-    let headers = new Headers({ "Content-Type": "application/json" });
-    let options = new RequestOptions({ "headers": headers });
-
     return this.http
       .get(endpoints.position, options)
       .toPromise()
@@ -59,9 +55,6 @@ export class AccountService {
   }
 
   getOrders() {
-    let headers = new Headers({ "Content-Type": "application/json"});
-    let options = new RequestOptions({ "headers": headers });
-
     return this.http
       .get(endpoints.order, options)
       .toPromise()
@@ -77,9 +70,6 @@ export class AccountService {
   }
 
   createOrder(order: Order) {
-    let headers = new Headers({ "Content-Type": "application/json" });
-    let options = new RequestOptions({ "headers": headers });
-
     return this.http
       .put(endpoints.order, order, options)
       .toPromise()
