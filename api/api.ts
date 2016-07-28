@@ -37,10 +37,10 @@ router.use((req, res, next) => {
   // reject request or initialize user
   if (!authenticated) {
     req.reply = { status: "error", message: "invalid authentication" };
-    res.json(401, req.reply);
+    res.status(401).json(req.reply);
   } else if (!authorized) {
     req.reply = { status: "error", message: "insufficient authorization" };
-    res.json(403, req.reply);
+    res.status(403).json(req.reply);
   } else {
     // note: may conflict with ExpressJS
     // TODO research ExpressJS "user" and "authenticatedUser"
