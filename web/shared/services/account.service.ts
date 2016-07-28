@@ -28,14 +28,7 @@ export class AccountService {
     return this.http
       .get(endpoints.balance, options)
       .toPromise()
-      .then(response => {
-        let reply = response.json();
-        if (reply.status === "success") {
-          return Promise.resolve<Balance[]>(reply.data.result);
-        } else {
-          return Promise.reject<any>(reply);
-        }
-      })
+      .then(processResponse)
       .catch(promiseError);
   }
 
@@ -43,14 +36,7 @@ export class AccountService {
     return this.http
       .get(endpoints.position, options)
       .toPromise()
-      .then(response => {
-        let reply = response.json();
-        if (reply.status === "success") {
-          return Promise.resolve<Position[]>(reply.data.result);
-        } else {
-          return Promise.reject<any>(reply);
-        }
-      })
+      .then(processResponse)
       .catch(promiseError);
   }
 
@@ -58,14 +44,7 @@ export class AccountService {
     return this.http
       .get(endpoints.order, options)
       .toPromise()
-      .then(response => {
-        let reply = response.json();
-        if (reply.status === "success") {
-          return Promise.resolve<Order[]>(reply.data.result);
-        } else {
-          return Promise.reject<any>(reply);
-        }
-      })
+      .then(processResponse)
       .catch(promiseError);
   }
 
@@ -73,14 +52,18 @@ export class AccountService {
     return this.http
       .put(endpoints.order, order, options)
       .toPromise()
-      .then(response => {
-        let reply = response.json();
-        if (reply.status === "success") {
-          return Promise.resolve<Order[]>(reply.data.result);
-        } else {
-          return Promise.reject<any>(reply);
-        }
-      })
+      .then(processResponse)
       .catch(promiseError);
   }
 };
+
+// TODO implement strongly typed multiple return types
+// helper funcs
+function processResponse(response) {
+  let reply = response.json();
+  if (reply.status === "success") {
+    return Promise.resolve(reply.data.result);
+  } else {
+    return Promise.reject(reply);
+  }
+}
