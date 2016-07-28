@@ -1,10 +1,10 @@
 "use strict";
 
+import { AuthUser } from "classes-common/auth-user";
 import { Balance } from "classes-common/balance";
 import { Listing } from "classes-common/listing";
 import { Order } from "classes-common/order";
 import { Position } from "classes-common/position";
-import { User } from "classes-common/user";
 
 let dummyDb: {
   balancesLastId: number,
@@ -16,7 +16,7 @@ let dummyDb: {
   positionsLastId: number,
   positions: { [key: number]: Position };
   usersLastId: number,
-  users: { [key: number]: User };
+  users: { [key: number]: AuthUser };
 } = {
   balancesLastId: null,
   balances: {},
@@ -109,7 +109,6 @@ dummyDb.users = {
   1: {
     id: 1,
     username: "testuserA",
-    password: "testpassA",
     first_name: "firstA",
     last_name: "lastA",
     address: "555 Anywhere #A",
@@ -119,11 +118,13 @@ dummyDb.users = {
     postal_code: "93311",
     phone: "5555555555",
     email: "testuserA@example.com",
+    password: "testpassA",
+    security_question: "questionA",
+    security_answer: "answerA",
   },
   2: {
     id: 2,
     username: "testuserB",
-    password: "testpassB",
     first_name: "firstB",
     last_name: "lastB",
     address: "555 Anywhere #B",
@@ -133,6 +134,9 @@ dummyDb.users = {
     postal_code: "93311",
     phone: "5555555555",
     email: "testuserB@example.com",
+    password: "testpassB",
+    security_question: "questionB",
+    security_answer: "answerB",
   },
 };
 
@@ -159,11 +163,11 @@ export function getByUsername(table: string, username: string) {
     [0];
 }
 
-export function insertRecord(table: string, delta: Listing|Order|Position|User) {
+export function insertRecord(table: string, delta: Listing|Order|Position|AuthUser) {
   delta.id = dummyDb[table + "LastId"] += 1;
   return dummyDb[table][delta.id] = delta;
 }
 
-export function updateById(table: string, id: number, delta: Listing|Order|Position|User) {
+export function updateById(table: string, id: number, delta: Listing|Order|Position|AuthUser) {
   return Object.assign(dummyDb[table][id], delta);
 }

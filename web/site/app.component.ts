@@ -16,16 +16,17 @@ import { getCookie } from "utils/utils";
   providers: [ AccountService ],
 })
 export class AppComponent {
-  title = "TickerTech";
+  private title: string = "TickerTech";
+  private name: string = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     // check for user cookie
-    let userCookie = getCookie("user");
-    if (userCookie !== "") {
+    let signedIn = getCookie("signedIn");
+    if (signedIn !== "") {
       this.authService.isLoggedIn = true;
-      this.authService.user = JSON.parse(userCookie);
+      this.name = signedIn;
     }
   }
 

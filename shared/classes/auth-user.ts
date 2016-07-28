@@ -1,9 +1,8 @@
-export class AuthUser {
-  id: number;
+import { User } from "./user";
 
-  username: string;
-  email: string;
+export class AuthUser extends User {
+  password: string;
 
-  first_name: string;
-  last_name: string;
+  security_question: string;
+  security_answer: string;
 }

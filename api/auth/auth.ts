@@ -3,7 +3,6 @@
 import * as express from "express";
 
 import { AuthUser } from "classes-common/auth-user";
-import { User } from "classes-common/user";
 
 import {
   getByUsername
@@ -28,7 +27,7 @@ function handleAuth(req, res, next) {
   // read incoming values
   let username: string = req.body.username || null;
   let password: string = req.body.password || null;
-  let user: User = dbCallWrapper(req, () => getByUsername("users", username));
+  let user: AuthUser = dbCallWrapper(req, () => getByUsername("users", username));
   let loginSuccess: boolean = false;
 
   // validate data
@@ -50,14 +49,7 @@ function handleAuth(req, res, next) {
 
   // prep result
   if (loginSuccess) {
-    let authUser: AuthUser = {
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      first_name: user.first_name,
-      last_name: user.last_name,
-    };
-    setReplyData(req, "authUser", authUser);
+    setReplyData(req, "result", user.first_name);
   } else if (req.reply.status !== "error") {
     req.reply.status = "fail";
     req.reply.message = "invalid credentials";

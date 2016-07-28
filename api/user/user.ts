@@ -2,6 +2,7 @@
 
 import * as express from "express";
 
+import { AuthUser } from "classes-common/auth-user";
 import { User } from "classes-common/user";
 
 import {
@@ -47,7 +48,6 @@ function handleCreate(req, res, next) {
   let fields = {
     id: null,
     username: "testuserC",
-    password: "testpassC",
     first_name: "firstC",
     last_name: "lastC",
     address: "555 Anywhere #C",
@@ -57,6 +57,9 @@ function handleCreate(req, res, next) {
     postal_code: "93311",
     phone: "5555555555",
     email: "bogus@example.com",
+    password: "testpassC",
+    security_question: "questionC",
+    security_answer: "answerC",
   };
 
   // validate data
@@ -65,6 +68,7 @@ function handleCreate(req, res, next) {
   // create new record
   if (validated) {
     let result = validated ? dbCallWrapper(req, () => insertRecord("users", fields)) : null;
+    result = stripSecurityData(result);
     setReplyData(req, "result", result);
   }
 
@@ -82,6 +86,7 @@ function handleRead(req, res, next) {
   // fetch specified record
   if (validated) {
     let result = validated ? dbCallWrapper(req, () => getById("users", id)) : null;
+    result = stripSecurityData(result);
     setReplyData(req, "result", result);
   }
 
@@ -95,7 +100,6 @@ function handleUpdate(req, res, next) {
   let fields = {
     id: id,
     username: "testuserC",
-    password: "testpassC",
     first_name: "firstC",
     last_name: "lastC",
     address: "555 Anywhere #C",
@@ -105,6 +109,9 @@ function handleUpdate(req, res, next) {
     postal_code: "93311",
     phone: "5555555555",
     email: "testuserC@example.com",
+    password: "testpassC",
+    security_question: "questionC",
+    security_answer: "answerC",
   }
 
   // validate data
@@ -113,6 +120,7 @@ function handleUpdate(req, res, next) {
   // update specified record
   if (validated) {
     let result = validated ? dbCallWrapper(req, () => updateById("users", id, fields)) : null;
+    result = stripSecurityData(result);
     setReplyData(req, "result", result);
   }
 
@@ -130,6 +138,7 @@ function handleDelete(req, res, next) {
   // delete specified record
   if (validated) {
     let result = validated ? dbCallWrapper(req, () => deleteById("users", id)) : null;
+    result = stripSecurityData(result);
     setReplyData(req, "result", result);
   }
 
@@ -138,3 +147,13 @@ function handleDelete(req, res, next) {
 }
 
 export default router;
+
+/***** Helper Funcs: begin *****/
+// clone user record without security data
+function stripSecurityData(user: AuthUser): User {
+  let result = Object.assign({}, user);
+  delete result.password;
+  delete result.security_question;
+  delete result.security_answer;
+  return result;
+}
