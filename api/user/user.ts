@@ -11,6 +11,7 @@ import {
   updateById
 } from "../../shared/db/dummyDb";
 import {
+  adminAuth,
   dbCallWrapper,
   setReplyData
 } from "../shared/utils/utils";
@@ -20,9 +21,18 @@ let router: express.Router = express.Router();
 
 // declare routes
 router.route("/")
-  .put(handleCreate);
+  .all((req, res, next) => {
+    // set target id to self
+    req.params.id = req.user.id || null;
+    next();
+  })
+  .get(handleRead)
+  .put(handleCreate)
+  .post(handleUpdate)
+  .delete(handleDelete);
 
 router.route("/:id")
+  .all(adminAuth)
   .get(handleRead)
   .put(handleUpdate)
   .post(handleUpdate)
