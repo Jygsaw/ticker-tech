@@ -97,29 +97,15 @@ function handleRead(req, res, next) {
 function handleUpdate(req, res, next) {
   // read incoming values
   let id: number = +req.params.id;
-  let fields = {
-    id: id,
-    username: "testuserC",
-    first_name: "firstC",
-    last_name: "lastC",
-    address: "555 Anywhere #C",
-    city: "Bakersfield",
-    state: "CA",
-    country: "USA",
-    postal_code: "93311",
-    phone: "5555555555",
-    email: "testuserC@example.com",
-    password: "testpassC",
-    security_question: "questionC",
-    security_answer: "answerC",
-  }
+  let delta = req.body;
 
   // validate data
   let validated: boolean = true;
+  // TODO implement server-side validation
 
   // update specified record
   if (validated) {
-    let result = validated ? dbCallWrapper(req, () => updateById("users", id, fields)) : null;
+    let result = validated ? dbCallWrapper(req, () => updateById("users", id, delta)) : null;
     result = stripSecurityData(result);
     setReplyData(req, "result", result);
   }
