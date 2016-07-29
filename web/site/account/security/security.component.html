@@ -1,1 +1,9 @@
 <h2>Security</h2>
+<form *ngIf="!fetchFailed" #f="ngForm" (ngSubmit)="submit()">
+  <!-- TODO: refactor with validation -->
+  <!-- TODO: refactor with new forms API -->
+  <input [(ngModel)]="auth.password" name="password" type="text" placeholder="Password">
+  <input [(ngModel)]="auth.security_question" name="security_question" type="text" placeholder="Security Question">
+  <input [(ngModel)]="auth.security_answer" name="security_answer" type="text" placeholder="Security Answer">
+  <button type="submit">Submit Order</button>
+</form>
