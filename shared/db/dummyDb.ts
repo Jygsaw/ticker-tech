@@ -168,6 +168,6 @@ export function insertRecord(table: string, delta: Listing|Order|Position|AuthUs
   return dummyDb[table][delta.id] = delta;
 }
 
-export function updateById(table: string, id: number, delta: Listing|Order|Position|AuthUser) {
+export function updateById(table: string, id: number, delta: { [key: string]: number|string }) {
   return Object.assign(dummyDb[table][id], delta);
 }
