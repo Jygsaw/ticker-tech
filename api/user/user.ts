@@ -20,6 +20,9 @@ import {
 // initialize router
 let router: express.Router = express.Router();
 
+// delegate routes
+router.use("/auth", require("./auth").default);
+
 // declare routes
 router.route("/")
   .all((req, res, next) => {
@@ -134,7 +137,7 @@ function handleDelete(req, res, next) {
 
 export default router;
 
-/***** Helper Funcs: begin *****/
+/***** Helper Functions: begin *****/
 // clone user record without security data
 function stripSecurityData(user: AuthUser): User {
   let result = Object.assign({}, user);
