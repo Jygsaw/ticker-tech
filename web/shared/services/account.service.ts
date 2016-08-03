@@ -17,6 +17,7 @@ const endpoints = {
   order: "../../api/order",
   position: "../../api/position",
   user: "../../api/user",
+  userAuth: "../../api/user/auth",
 };
 const headers = new Headers({ "Content-Type": "application/json" });
 const options = new RequestOptions({ "headers": headers });
@@ -28,6 +29,14 @@ export class AccountService {
   getUser() {
     return this.http
       .get(endpoints.user, options)
+      .toPromise()
+      .then(processResponse)
+      .catch(promiseError);
+  }
+
+  getUserAuth() {
+    return this.http
+      .get(endpoints.userAuth, options)
       .toPromise()
       .then(processResponse)
       .catch(promiseError);
@@ -68,6 +77,14 @@ export class AccountService {
   updateUser(data) {
     return this.http
       .post(endpoints.user, data, options)
+      .toPromise()
+      .then(processResponse)
+      .catch(promiseError);
+  }
+
+  updateUserAuth(data) {
+    return this.http
+      .post(endpoints.userAuth, data, options)
       .toPromise()
       .then(processResponse)
       .catch(promiseError);
