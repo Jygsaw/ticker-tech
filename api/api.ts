@@ -19,6 +19,7 @@ router.use((req, res, next) => {
 
 // delegate open routes
 router.use("/auth", require("./auth/auth").default);
+router.use("/register", require("./user/user").default);
 
 // authorization middleware
 router.use((req, res, next) => {

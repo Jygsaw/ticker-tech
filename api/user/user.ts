@@ -25,12 +25,16 @@ router.use("/auth", require("./auth").default);
 
 // declare routes
 router.route("/")
+  // TODO review API routing logic for unprotected "/user" routes
   .all((req, res, next) => {
     // set target id to self
-    req.params.id = req.user.id || null;
+    req.params.id = req.user ? req.user.id : null;
     next();
   })
   .get(handleRead)
+  // TODO maybe move user creation to its own unprotected script in
+  //      the same way as "/api/auth" and only keep protected reoutes
+  //      behind "/user"
   .put(handleCreate)
   .post(handleUpdate)
   .delete(handleDelete);

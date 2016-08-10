@@ -18,9 +18,10 @@ let router: express.Router = express.Router();
 
 // declare routes
 router.route("/")
+  // TODO review API routing logic for unprotected "/user" routes
   .all((req, res, next) => {
     // set target id to self
-    req.params.id = req.user.id || null;
+    req.params.id = req.user ? req.user.id : null;
     next();
   })
   .get(handleRead)
