@@ -16,6 +16,7 @@ const endpoints = {
   balance: "../../api/balance",
   order: "../../api/order",
   position: "../../api/position",
+  register: "../../api/register",
   user: "../../api/user",
   userAuth: "../../api/user/auth",
 };
@@ -69,6 +70,14 @@ export class AccountService {
   createOrder(order: Order) {
     return this.http
       .put(endpoints.order, order, options)
+      .toPromise()
+      .then(processResponse)
+      .catch(promiseError);
+  }
+
+  createUser(data) {
+    return this.http
+      .put(endpoints.register, data, options)
       .toPromise()
       .then(processResponse)
       .catch(promiseError);

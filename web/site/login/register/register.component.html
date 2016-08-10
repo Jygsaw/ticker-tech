@@ -1,0 +1,11 @@
+<h2>New User Registration</h2>
+<form *ngIf="!registerFailed" #f="ngForm" (ngSubmit)="submit()">
+  <!-- TODO: refactor with validation -->
+  <!-- TODO: refactor with new forms API -->
+  <input [(ngModel)]="register.username" name="username" type="text" placeholder="Username">
+  <input [(ngModel)]="register.email" name="email" type="text" placeholder="Email">
+  <input [(ngModel)]="register.password" name="password" type="text" placeholder="Password">
+  <input [(ngModel)]="register.security_question" name="security_question" type="text" placeholder="Security Question">
+  <input [(ngModel)]="register.security_answer" name="security_answer" type="text" placeholder="Security Answer">
+  <button type="submit">Register User</button>
+</form>

@@ -5,6 +5,7 @@ import { FormsModule } from "@angular/forms";
 import { loginRouting } from "./login.routing";
 
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
+import { RegisterComponent } from "./register/register.component";
 import { SignInComponent } from "./sign-in/sign-in.component";
 
 @NgModule({
@@ -15,6 +16,7 @@ import { SignInComponent } from "./sign-in/sign-in.component";
   ],
   declarations: [
     ForgotPasswordComponent,
+    RegisterComponent,
     SignInComponent,
   ],
   providers: [
