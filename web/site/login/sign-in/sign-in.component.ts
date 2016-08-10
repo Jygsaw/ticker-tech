@@ -27,7 +27,7 @@ export class SignInComponent {
   login() {
     this.authService
       .login(this.username, this.password)
-      .then(status => this.router.navigate(["/account"]))
+      .then(() => this.router.navigate(["/account"]))
       .catch(promiseError)
       .catch(() => this.loginFailed = true);
   }
