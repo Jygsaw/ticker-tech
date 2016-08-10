@@ -54,23 +54,29 @@ function handleCreate(req, res, next) {
   // read incoming values
   let fields = {
     id: null,
-    username: "testuserC",
-    first_name: "firstC",
-    last_name: "lastC",
-    address: "555 Anywhere #C",
-    city: "Bakersfield",
-    state: "CA",
-    country: "USA",
-    postal_code: "93311",
-    phone: "5555555555",
-    email: "bogus@example.com",
-    password: "testpassC",
-    security_question: "questionC",
-    security_answer: "answerC",
+    username: req.body.username || null,
+    first_name: req.body.first_name || null,
+    last_name: req.body.last_name || null,
+    address: req.body.address || null,
+    city: req.body.city || null,
+    state: req.body.state || null,
+    country: req.body.country || null,
+    postal_code: req.body.postal_code || null,
+    phone: req.body.phone || null,
+    email: req.body.email || null,
+    password: req.body.password || null,
+    security_question: req.body.security_question || null,
+    security_answer: req.body.security_answer || null,
   };
 
   // validate data
   let validated: boolean = true;
+  if (fields.username === null ||
+      fields.password === null ||
+      fields.security_question === null ||
+      fields.security_answer === null) {
+    validated = false;
+  }
 
   // create new record
   if (validated) {
