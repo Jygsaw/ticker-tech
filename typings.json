@@ -3,6 +3,7 @@
     "core-js": "registry:dt/core-js",
     "express": "registry:dt/express",
     "express-serve-static-core": "registry:dt/express-serve-static-core",
+    "express-session": "registry:dt/express-session",
     "mime": "registry:dt/mime",
     "node": "registry:dt/node",
     "serve-static": "registry:dt/serve-static"
