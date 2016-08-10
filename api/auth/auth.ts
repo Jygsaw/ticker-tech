@@ -49,7 +49,7 @@ function handleAuth(req, res, next) {
 
   // prep result
   if (loginSuccess) {
-    setReplyData(req, "result", user.first_name);
+    setReplyData(req, "result", user.id);
   } else if (req.reply.status !== "error") {
     req.reply.status = "fail";
     req.reply.message = "invalid credentials";

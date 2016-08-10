@@ -11,28 +11,37 @@ import { dbCallWrapper } from "./shared/utils/utils";
 
 // initialize router
 let router: express.Router = express.Router();
-
-// authorization middleware
 router.use((req, res, next) => {
   // initialize api state
   req.reply = { status: "success" };
+  next();
+});
 
-  // validate incoming values
-  let userId: number = null;
-  let credentials: string = null;
+// delegate open routes
+router.use("/auth", require("./auth/auth").default);
 
-  // TODO remove debugging
-  userId = 1;
-
-  // verify credentials
+// authorization middleware
+router.use((req, res, next) => {
+  // initialize variables
+  let userId: number = +req.session.userId;
   let user: User = null;
   let authenticated: boolean = false;
   let authorized: boolean = false;
 
-  // TODO remove debugging
-  user = dbCallWrapper(req, () => getById("users", userId));
-  authenticated = true;
-  authorized = true;
+  // verify authentication
+  // TODO research and handle invalid session scenarios
+  let validSession: boolean = true;
+  if (validSession) {
+    authenticated = true;
+
+    // verify authorization
+    user = dbCallWrapper(req, () => getById("users", userId));
+    // TODO implement permissions?
+    let userPermissions: boolean = true;
+    if (userPermissions) {
+      authorized = true;
+    }
+  }
 
   // reject request or initialize user
   if (!authenticated) {
@@ -51,7 +60,6 @@ router.use((req, res, next) => {
 
 // delegate routes
 router.use("/account", require("./account/account").default);
-router.use("/auth", require("./auth/auth").default);
 router.use("/balance", require("./balance/balance").default);
 router.use("/listing", require("./listing/listing").default);
 router.use("/order", require("./order/order").default);
