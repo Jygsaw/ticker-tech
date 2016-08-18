@@ -1,0 +1,46 @@
+.main-display {
+  height: 100%;
+  margin-bottom: -2.5em;
+}
+
+header {
+  background: #005581;
+}
+
+.logo {
+  height: 3em;
+  margin: 0.25em;
+}
+
+.login-ctrls {
+  background: #ffe552;
+  display: inline-block;
+  width: 5.5em;
+  padding: 0.1em 0.5em;
+  margin: 0.5em;
+  border-radius: 5px;
+  text-align: center;
+}
+.login-ctrls a {
+  color: #005581;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer-spacer {
+  height: 2.5em;
+}
+
+footer {
+  background: #005581;
+  height: 2.5em;
+  padding: 0.5em;
+  text-align: center;
+  vertical-align: middle;
+}
+footer a ~ a:before {
+  content: "|\0020";
+}
+footer a {
+  color: #dbd5cd;
+}
