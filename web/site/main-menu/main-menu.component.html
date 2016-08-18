@@ -1,34 +1,47 @@
-<nav>
-  <ul>
-    <li>
-      <a [routerLink]="['/home']">Home</a>
-      <ul>
-        <li><a [routerLink]="['/about']">About Us</a></li>
-        <li><a [routerLink]="['/terms']">Terms</a></li>
-        <li><a [routerLink]="['/privacy']">Privacy</a></li>
-        <li><a [routerLink]="['/contact']">Contact Us</a></li>
-      </ul>
-    </li>
-    <li>
-      <a [routerLink]="['/account']">Account</a>
+<nav [class.active]="authService.isLoggedIn">
+  <div class="row">
+    <div class="col-xs-2 text-center">
+      <a [routerLink]="['/home']" [routerLinkActive]="'active'">
+        <span class="glyphicon glyphicon-home"></span>
+        <span class="nav-text"><br class="break">Home</span>
+      </a>
+    </div>
+    <div class="col-xs-2 text-center">
+      <a [routerLink]="['/account']" [routerLinkActive]="'active'">
+        <span class="glyphicon glyphicon-user"></span>
+        <span class="nav-text"><br class="break">Account</span>
+      </a>
+      <!-- TODO remove if navigation sufficient from internal pages -->
       <ul>
         <li><a [routerLink]="['/account/profile']">Profile</a></li>
         <li><a [routerLink]="['/account/security']">Security</a></li>
         <li><a [routerLink]="['/account/transfers']">Transfers</a></li>
         <li><a [routerLink]="['/account/beneficiaries']">Beneficiaries</a></li>
       </ul>
-    </li>
-    <li>
-      <a [routerLink]="['/balances']">Balances</a>
-    </li>
-    <li>
-      <a [routerLink]="['/positions']">Positions</a>
-    </li>
-    <li>
-      <a [routerLink]="['/orders']">Orders</a>
-    </li>
-    <li>
-      <a [routerLink]="['/trade']">Trade</a>
-    </li>
-  </ul>
+    </div>
+    <div class="col-xs-2 text-center">
+      <a [routerLink]="['/balances']" [routerLinkActive]="'active'">
+        <span class="glyphicon glyphicon-usd"></span>
+        <span class="nav-text"><br class="break">Balances</span>
+      </a>
+    </div>
+    <div class="col-xs-2 text-center">
+      <a [routerLink]="['/positions']" [routerLinkActive]="'active'">
+        <span class="glyphicon glyphicon-list-alt"></span>
+        <span class="nav-text"><br class="break">Positions</span>
+      </a>
+    </div>
+    <div class="col-xs-2 text-center">
+      <a [routerLink]="['/orders']" [routerLinkActive]="'active'">
+        <span class="glyphicon glyphicon-check"></span>
+        <span class="nav-text"><br class="break">Orders</span>
+      </a>
+    </div>
+    <div class="col-xs-2 text-center">
+      <a [routerLink]="['/trade']" [routerLinkActive]="'active'">
+        <span class="glyphicon glyphicon-transfer"></span>
+        <span class="nav-text"><br class="break">Trade</span>
+      </a>
+    </div>
+  </div>
 </nav>
