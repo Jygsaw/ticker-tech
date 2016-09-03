@@ -13,4 +13,9 @@
   </div>
   <button type="submit">Sign In</button>
 </form>
-<a *ngIf="loginFailed" [routerLink]="['/forgot-password']">Forgot Password?</a>
+<p *ngIf="loginFailed">
+  <a [routerLink]="['/forgot-password']">Forgot Password?</a>
+</p>
+<p>
+  Don't have an account?  <a [routerLink]="['/register']">Sign up today!</a>
+</p>
