@@ -1,26 +1,19 @@
-import { provideRouter, RouterConfig } from "@angular/router";
+import { ModuleWithProviders } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
 import { AuthGuard } from "guards/auth.guard";
-import { AuthService } from "services/auth.service";
-
-import { AccountRoutes } from "./account/account.routes";
-import { LoginRoutes } from "./login/login.routes";
-import { PublicRoutes } from "./public/public.routes";
 
 import { BalancesComponent } from "./balances/balances.component";
 import { OrdersComponent } from "./orders/orders.component";
 import { PositionsComponent } from "./positions/positions.component";
 import { TradeComponent } from "./trade/trade.component";
 
-export const routes: RouterConfig = [
+const appRoutes: Routes = [
   {
     path: "",
     redirectTo: "/home",
-    terminal: true,
+    pathMatch: "full",
   },
-  ...AccountRoutes,
-  ...LoginRoutes,
-  ...PublicRoutes,
   {
     path: "balances",
     component: BalancesComponent,
@@ -43,8 +36,8 @@ export const routes: RouterConfig = [
   },
 ];
 
-export const APP_ROUTER_PROVIDERS = [
+export const appRoutingProviders: any[] = [
   AuthGuard,
-  AuthService,
-  provideRouter(routes),
 ];
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

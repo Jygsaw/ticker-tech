@@ -1,10 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ROUTER_DIRECTIVES, Router } from "@angular/router";
+import { Router } from "@angular/router";
 
-import { AccountService } from "services/account.service";
 import { AuthService } from "services/auth.service";
-
-import { MainMenuComponent } from "./main-menu/main-menu.component";
 
 import { getCookie } from "utils/utils";
 
@@ -12,8 +9,6 @@ import { getCookie } from "utils/utils";
   moduleId: module.id,
   selector: "app",
   templateUrl: "app.component.html",
-  directives: [ ROUTER_DIRECTIVES, MainMenuComponent ],
-  providers: [ AccountService ],
 })
 export class AppComponent {
   private title: string = "TickerTech";
