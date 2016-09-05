@@ -10,8 +10,8 @@ import { AuthService } from "services/auth.service";
 
 import { promiseError } from "utils/utils";
 
-// TODO: move endpoint to central config file
-// TODO: enable https
+// TODO move endpoint to central config file
+// TODO enable https
 const endpoints = {
   balance: "../../api/balance",
   order: "../../api/order",

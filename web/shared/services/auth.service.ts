@@ -4,8 +4,8 @@ import "rxjs/add/operator/toPromise";
 
 import { promiseError, setCookie, deleteCookie } from "utils/utils";
 
-// TODO: move endpoint to central config file
-// TODO: enable https
+// TODO move endpoint to central config file
+// TODO enable https
 const endpoint = "../../api/auth";
 const headers = new Headers({ "Content-Type": "application/json" });
 const options = new RequestOptions({ "headers": headers });
@@ -22,7 +22,8 @@ export class AuthService {
       "password": password,
     });
 
-    // TODO: review promise return implementation
+    // TODO review promise return implementation
+    // TODO refactor promises implementation to observables
     return this.http
       .post(endpoint, credentials, options)
       .toPromise()
