@@ -1,9 +1,10 @@
-import { RouterConfig } from "@angular/router";
+import { ModuleWithProviders } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { SignInComponent } from "./sign-in/sign-in.component";
 
-export const LoginRoutes: RouterConfig = [
+const loginRoutes: Routes = [
   {
     path: "forgot-password",
     component: ForgotPasswordComponent,
@@ -13,3 +14,5 @@ export const LoginRoutes: RouterConfig = [
     component: SignInComponent,
   },
 ];
+
+export const loginRouting: ModuleWithProviders = RouterModule.forChild(loginRoutes);

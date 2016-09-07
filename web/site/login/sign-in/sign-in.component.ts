@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ROUTER_DIRECTIVES, Router } from "@angular/router";
+import { Router } from "@angular/router";
 
 import { AuthService } from "services/auth.service";
 
@@ -8,7 +8,6 @@ import { promiseError } from "utils/utils";
 @Component({
   moduleId: module.id,
   templateUrl: "sign-in.component.html",
-  directives: [ ROUTER_DIRECTIVES ],
 })
 export class SignInComponent {
   private username: string = null;
