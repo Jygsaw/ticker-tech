@@ -3,6 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 
+import { AccountModule } from "./account/account.module";
 import { LoginModule } from "./login/login.module";
 import { PublicModule } from "./public/public.module";
 
@@ -23,6 +24,7 @@ import { TradeComponent } from "./trade/trade.component";
     FormsModule,
     HttpModule,
     routing,
+    AccountModule,
     LoginModule,
     PublicModule,
   ],

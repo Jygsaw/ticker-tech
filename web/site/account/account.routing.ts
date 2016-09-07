@@ -1,4 +1,5 @@
-import { RouterConfig } from "@angular/router";
+import { ModuleWithProviders } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
 import { AuthGuard } from "guards/auth.guard";
 
@@ -8,7 +9,7 @@ import { ProfileComponent } from "./profile/profile.component";
 import { SecurityComponent } from "./security/security.component";
 import { TransfersComponent } from "./transfers/transfers.component";
 
-export const AccountRoutes: RouterConfig = [
+const accountRoutes: Routes = [
   {
     path: "account",
     component: AccountComponent,
@@ -37,3 +38,5 @@ export const AccountRoutes: RouterConfig = [
     ],
   }
 ];
+
+export const accountRouting: ModuleWithProviders = RouterModule.forChild(accountRoutes);
