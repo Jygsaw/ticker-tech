@@ -9,4 +9,8 @@ declare namespace Express {
     reply?: Reply;
     user?: any;
   }
+
+  export interface Session {
+    userId?: number;
+  }
 }
