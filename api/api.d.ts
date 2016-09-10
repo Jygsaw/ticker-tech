@@ -7,5 +7,6 @@ declare namespace Express {
 
   export interface Request {
     reply?: Reply;
+    user?: any;
   }
 }
