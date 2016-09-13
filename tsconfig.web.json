@@ -14,6 +14,7 @@
       "classes-common/*": [ "shared/classes/*" ],
       "db/*": [ "shared/db/*" ],
       "guards/*": [ "web/shared/guards/*" ],
+      "pipes/*": [ "web/shared/pipes/*" ],
       "services/*": [ "web/shared/services/*" ],
       "utils/*": [ "web/shared/utils/*" ]
     }
