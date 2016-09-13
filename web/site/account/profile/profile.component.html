@@ -1,16 +1,32 @@
 <h2>Profile</h2>
-<form *ngIf="!fetchFailed" #f="ngForm" (ngSubmit)="submit()">
-  <!-- TODO: refactor with validation -->
-  <!-- TODO: refactor with new forms API -->
-  <input [(ngModel)]="user.username" name="username" type="text" placeholder="Username">
-  <input [(ngModel)]="user.first_name" name="first_name" type="text" placeholder="First Name">
-  <input [(ngModel)]="user.last_name" name="last_name" type="text" placeholder="Last Name">
-  <input [(ngModel)]="user.address" name="address" type="text" placeholder="Address">
-  <input [(ngModel)]="user.city" name="city" type="text" placeholder="City">
-  <input [(ngModel)]="user.state" name="state" type="text" placeholder="State">
-  <input [(ngModel)]="user.country" name="country" type="text" placeholder="Country">
-  <input [(ngModel)]="user.postal_code" name="postal_code" type="text" placeholder="Postal Code">
-  <input [(ngModel)]="user.phone" name="phone" type="text" placeholder="Phone">
-  <input [(ngModel)]="user.email" name="email" type="text" placeholder="Email">
-  <button type="submit">Submit Order</button>
-</form>
+
+<div *ngIf="error" class="alert alert-danger">
+  Unable to contact server.  Please reload the page and try again.
+</div>
+
+<div *ngIf="!error">
+  <div *ngIf="!loaded" class="alert alert-info">
+    Loading ...
+  </div>
+
+  <div *ngIf="submitted && !updated" class="alert alert-info">
+    Saving ...
+  </div>
+
+  <div *ngIf="updated" class="alert alert-success">
+    Changes Saved
+  </div>
+
+  <form *ngIf="loaded" [formGroup]="profileForm" (ngSubmit)="submit()">
+    <div *ngFor="let field of fields" class="form-group"
+        [class.has-success]="!profileForm.controls[field].pristine && !formErrors[field]"
+        [class.has-error]="(!profileForm.controls[field].pristine || failed) && formErrors[field]">
+      <label [attr.for]="field">{{ field | underspace | capitalize }}</label>
+      <input id="{{ field }}" class="form-control" formControlName="{{ field }}" type="text" placeholder="{{ field | underspace | capitalize }}">
+      <div *ngIf="formErrors[field]" class="help-block">
+        {{ formErrors[field] }}
+      </div>
+    </div>
+    <button [disabled]="!profileForm.valid || submitted" class="btn btn-primary" type="submit">Submit Changes</button>
+  </form>
+</div>
