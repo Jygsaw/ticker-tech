@@ -29,6 +29,10 @@
         {{ formErrors[field] }}
       </div>
     </div>
-    <button [disabled]="!profileForm.valid || submitted" class="btn btn-primary" type="submit">Submit Changes</button>
+    <div class="row">
+      <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
+        <button [disabled]="!profileForm.valid || submitted" class="btn btn-primary" type="submit">Submit Changes</button>
+      </div>
+    </div>
   </form>
 </div>
