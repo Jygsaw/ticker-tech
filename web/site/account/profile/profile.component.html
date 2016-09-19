@@ -17,13 +17,15 @@
     Changes Saved
   </div>
 
-  <form *ngIf="loaded" [formGroup]="profileForm" (ngSubmit)="submit()">
+  <form *ngIf="loaded" [formGroup]="profileForm" (ngSubmit)="submit()" class="form-horizontal">
     <div *ngFor="let field of fields" class="form-group"
         [class.has-success]="!profileForm.controls[field].pristine && !formErrors[field]"
         [class.has-error]="(!profileForm.controls[field].pristine || failed) && formErrors[field]">
-      <label [attr.for]="field">{{ field | underspace | capitalize }}</label>
-      <input id="{{ field }}" class="form-control" formControlName="{{ field }}" type="text" placeholder="{{ field | underspace | capitalize }}">
-      <div *ngIf="formErrors[field]" class="help-block">
+      <label [attr.for]="field" class="col-xs-12 col-sm-3 col-md-4 control-label">{{ field | underspace | capitalize }}</label>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <input id="{{ field }}" class="form-control" formControlName="{{ field }}" type="text" placeholder="{{ field | underspace | capitalize }}">
+      </div>
+      <div *ngIf="formErrors[field] || true" class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 help-block">
         {{ formErrors[field] }}
       </div>
     </div>
